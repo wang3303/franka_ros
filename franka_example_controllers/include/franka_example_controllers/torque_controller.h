@@ -18,6 +18,7 @@
 #include <franka_example_controllers/compliance_paramConfig.h>
 #include <franka_hw/franka_model_interface.h>
 #include <franka_hw/franka_state_interface.h>
+#include <franka_example_controllers/JointTorqueComparison.h>
 
 namespace franka_example_controllers {
 
@@ -45,7 +46,7 @@ class TorqueController : public controller_interface::MultiInterfaceController<
 
   // Equilibrium pose subscriber
   ros::Subscriber sub_torque_;
-  void torqueCallback(const franka_msgs::Torque& msg);
+  void torqueCallback(const JointTorqueComparison& msg);
 };
 
 }  // namespace franka_example_controllers

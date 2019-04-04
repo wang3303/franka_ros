@@ -113,9 +113,9 @@ Eigen::Matrix<double, 7, 1> TorqueController::saturateTorqueRate(
 }
 
 void TorqueController::torqueCallback(
-    const franka_msgs::Torque& msg) {
+    const JointTorqueComparison& msg) {
   for (int i = 0; i < 7; ++i)
-    tau_d(i)= msg.torque[i]
+    tau_d(i)= msg.tau_commanded[i]
 }
 
 }  // namespace franka_example_controllers
