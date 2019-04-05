@@ -18,7 +18,7 @@ bool TorqueController::init(hardware_interface::RobotHW* robot_hw,
                                                ros::NodeHandle& node_handle) {
   sub_torque_ = node_handle.subscribe(
       "/torque_cmd", 20, &TorqueController::torqueCallback, this,
-      ros::TrcansportHints().reliable().tcpNoDelay());
+      ros::TransportHints().reliable().tcpNoDelay());
 
   std::string arm_id;
   if (!node_handle.getParam("arm_id", arm_id)) {
@@ -115,7 +115,7 @@ Eigen::Matrix<double, 7, 1> TorqueController::saturateTorqueRate(
 void TorqueController::torqueCallback(
     const JointTorqueComparison& msg) {
   for (int i = 0; i < 7; ++i)
-    tau_d(i)= msg.tau_commanded[i]
+    tau_d(i)= msg.tau_commanded[i];
 }
 
 }  // namespace franka_example_controllers

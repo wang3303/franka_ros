@@ -42,7 +42,7 @@ class TorqueController : public controller_interface::MultiInterfaceController<
   std::vector<hardware_interface::JointHandle> joint_handles_;
 
   const double delta_tau_max_{1.0};
-  Eigen::VectorXd tau_d(7);
+  Eigen::Matrix<double, 7, 1> tau_d;
 
   // Equilibrium pose subscriber
   ros::Subscriber sub_torque_;
