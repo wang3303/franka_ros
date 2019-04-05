@@ -94,6 +94,8 @@ void TorqueController::update(const ros::Time& /*time*/,
   franka::RobotState robot_state = state_handle_->getRobotState();
   Eigen::Map<Eigen::Matrix<double, 7, 1>> tau_J_d(  // NOLINT (readability-identifier-naming)
       robot_state.tau_J_d.data());
+  std::array<double, 7> coriolis = model_handle_->getCoriolis();
+  std::array<double, 7> gravity = model_handle_->getGravity();
   tau_d << saturateTorqueRate(tau_d, tau_J_d);
   for (size_t i = 0; i < 7; ++i) {
     joint_handles_[i].setCommand(tau_d(i));
